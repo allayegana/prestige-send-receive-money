@@ -10,67 +10,68 @@
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body class="container" style="background-image:url('img/argent.webp');">
-<header><p class="card-body d-flex justify-content-center" style="color:white">Veuillez remplir le formulaire</p></header>
+<body class="container" style="background-color:#cccccc">
+<header><p class="card-body d-flex justify-content-center" style="color:orange"><b>Veuillez remplir le formulaire</b></p></header>
 <div>
 <form class="container" method="POST" th:object="${senderData}">
     <th:block th:include="messageValidation"></th:block>
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
-                <label class="fst-italic" style="color:white">PRENOM ET NOM</label>
-                <input class="form-control rounded-pill" placeholder="   ex:full name" th:errorclass="is-invalid" type="text" value=""
+                <label class="fst-italic" style="color:orange"><b>Full Name</b></label>
+                <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
                        name="prenom" required
                        th:fieled="*{prenom}"/>
             </div>
 
             <div style="padding:6px">
-                <label class="fst-italic" style="color:white">montant a envoyer</label>
-                <input class="form-control rounded-pill" placeholder="ex:montant a envoyer" th:errorclass="is-invalid" type="text" value=""
+                <label class="fst-italic" style="color:orange"><b>SendAmt</b></label>
+                <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
                        name="montant" required
                        th:fieled="*{montant}"/>
             </div>
 
             <div style="padding:6px">
-            <label class="fst-italic" style="color:white">PHONE</label>
-            <input class="form-control rounded-pill" placeholder="phone number" th:errorclass="is-invalid" type="number" value=""
+            <label class="fst-italic" style="color:orange"><b>Sender Phone</b></label>
+            <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="number" value=""
                    required
                    name="telephone" th:fieled="*{telephone}"/>
             </div>
 
             <div style="padding:6px">
-            <label class="fst-italic" style="color:white">pays</label>
+                <label class="fst-italic" style="color:orange"><b>Receive Country</b></label>
             <select class="form-select form-select-sm mb-3 text-uppercase fst-italic rounded-pill" required th:errorclass="is-invalid"
                     aria-label=".form-select-sm example value=" type="text" name="pays" th:fieled="*{pays}">
-                <option  selected disabled value="">select country</option>
+                <option  selected disabled value="" style="color:orange">select country</option>
                 <option>SENEGAL</option>
+                <option>USA</option>
                 <option>MALI</option>
                 <option>COTE D'IVOIRE</option>
             </select>
                 <div style="padding:6px">
-                    <label class="fst-italic" style="color:white">receive name</label>
-                    <input class="form-control rounded-pill" placeholder="ex:full name" th:errorclass="is-invalid" type="text" value=""
+                    <label class="fst-italic" style="color:orange"><b>Receive Name</b></label>
+                    <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
                            name="nome" required
                            th:fieled="*{nome}"/>
                 </div>
 
                 <div style="padding:6px">
-                    <label class="fst-italic" style="color:white">montant a recevoir</label>
-                    <input class="form-control rounded-pill" placeholder="ex:recevoir" th:errorclass="is-invalid" type="text" value=""
+                    <label class="fst-italic" style="color:orange"><b>ReceiveAmt</b></label>
+                    <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
                            name="recevoir" required
                            th:fieled="*{recevoir}"/>
                 </div>
                 <div style="padding:6px">
-                    <label class="fst-italic" style="color:white">PHONE</label>
-                    <input class="form-control rounded-pill" placeholder="phone number" th:errorclass="is-invalid" type="number" value=""
+                    <label class="fst-italic" style="color:orange"><b>Receive Phone</b></label>
+                    <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="number" value=""
                            required
                            name="phone" th:fieled="*{phone}"/>
                 </div>
 
                 <div class="text-center">
-                    <button class="btn center" style="margin:30px;background-color:green;color:white" type="submit">send</button>
-                    <button  class="btn btn-info center" style="margin:30px" ><a href="/index" style="color:white">retour</a></button>
+                    <button class="btn center" style="margin:30px;background-color:green;color:white" type="submit">SEND</button>
+                    <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/index" style="color:white">GO BACK</a></button>
                 </div>
-                <p class=" text-center font-italic" style="color:white"><b>Prestige sender and receive money</b></p>
+                <p class=" text-center font-italic" style="color:orange"><b>Prestige sender and receive money</b></p>
             </div>
         </div>
 </form>
