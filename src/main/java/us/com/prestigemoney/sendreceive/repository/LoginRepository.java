@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 import us.com.prestigemoney.sendreceive.model.LoginModel;
 
 @Repository
-public interface LoginRepository extends JpaRepository<LoginModel,Long> {
+public interface LoginRepository extends JpaRepository<LoginModel,Integer> {
+
+    LoginModel findByMotpass(String motpass);
 }

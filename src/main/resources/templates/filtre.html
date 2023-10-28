@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="container">
-<header class=" card-body d-flex justify-content-center" style="background-color:#708090;color:white"><b>is this customer</b></header>
+<header class=" card-body d-flex justify-content-center" style="background-color:red;color:white"><b>You wanna delete this customer? are you sur ?</b></header>
 <table class="table">
     <thead class="">
     <tr class="">
@@ -27,6 +27,9 @@
         <th>R_AMOUNT</th>
         <th>DATE</th>
         <th>MTR</th>
+        <th>STATUS</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
     </tr>
     </thead>
     <tbody th:each="senderData : ${senderData}">
@@ -39,8 +42,14 @@
     <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
+    <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
+    <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
+    <td class=""><a class=" btn btn-danger" th:href="@{elimiar/{id}(id=${senderData.id})}" ><i class="large material-icons ">delete</i></a></td>
     </tbody>
-
+    <div class="text-center">
+        <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/prestige-principal" style="color:white">GO BACK</a></button>
+    </div>
+</table>
 <!--<a href="/index" class="waves-effect waves-light btn-small btn-info"><i class="material-icons left">cloud</i>Retour au page principal</a>-->
 
 

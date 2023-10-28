@@ -1,4 +1,4 @@
-package us.com.prestigemoney.sendreceive.model;
+package us.com.prestigemoney.sendreceive.model.Dto;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -6,27 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @Builder
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "LOGIN")
-public class LoginModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    private Integer id;
-
+public class LoginModelDTO {
     @NotNull
     private String usuario;
     @NotNull
     private String motpass;
-    private String agence;
-
 };
 
 

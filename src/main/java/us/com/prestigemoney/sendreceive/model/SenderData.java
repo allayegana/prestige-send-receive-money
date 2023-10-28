@@ -40,6 +40,9 @@ public class SenderData implements Serializable {
 
     @NotNull
     private String recevoir;
+
+    @NotNull
+    private String status;
     @NotNull
     @Column(name ="matriculation" ,unique = true)
     private int matriculation;

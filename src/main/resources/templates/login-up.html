@@ -17,10 +17,10 @@
     min-height:10px;
     max-width: 20%;
     height:40%">
-<header><p class="card-body d-flex justify-content-center" style="color:blue"><b>LOGIN</b></p></header>
+<header><p class="card-body d-flex justify-content-center" style="color:blue"><b>SIGN UP</b></p></header>
 <div>
-<form class="container" method="POST" th:object="${loginModelDTO}">
-    <th:block th:include="messageValidations"></th:block>
+<form class="container" method="POST" th:object="${loginModel}">
+    <th:block th:include="messageValidation"></th:block>
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
                 <label class="fst-italic" style="color:orange"><b>User Name</b></label>
@@ -35,8 +35,17 @@
                        name="motpass" required
                        th:fieled="*{motpass}"/>
             </div>
+
+            <div style="padding:6px">
+            <label class="fst-italic" style="color:orange"><b>AGENCE</b></label>
+            <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
+                   required
+                   name="agence" th:fieled="*{agence}"/>
+            </div>
+
+
                 <div class="text-center">
-                    <button class="btn center" style="margin:30px;background-color:green;color:white" type="submit">Login</button>
+                    <button class="btn center" style="margin:30px;background-color:green;color:white" type="submit">sign</button>
                 </div>
                 <p class=" text-center font-italic" style="color:white"><b>Prestige Securite</b></p>
             </div>

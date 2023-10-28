@@ -8,10 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import us.com.prestigemoney.sendreceive.model.SenderData;
@@ -30,9 +27,9 @@ public class SenderControllers {
     @Autowired
     private SenderRepository repository;
 
-    @GetMapping("/index")
+    @GetMapping("/prestige-principal")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("prestige-principal");
         return mv;
     }
 
@@ -56,11 +53,13 @@ public class SenderControllers {
                 gerador.nextInt();
             }
             senderData.setMatriculation(gerador.nextInt(30302022) + 1);
+            senderData.setStatus("UNPAID");
             repository.save(senderData);
             attributes.addFlashAttribute("mensagem", " formulaire rempli avec succès nous analisons et rentrons en contacter avec vous  " + senderData.getMatriculation() + " n'oubliez pas de note votre numero de matriculation");
             return mv;
         }
     }
+
 
     @RequestMapping("/listes")
     public ModelAndView customer() {
@@ -74,11 +73,35 @@ public class SenderControllers {
         return mv;
     }
 
-    @RequestMapping("/{matriculation}")
-    public ModelAndView consulteParMatriculation(@PathVariable("matriculation") int matriculation) {
-        ModelAndView mv = new ModelAndView("filtre");
-        SenderData senderData = repository.findByMatriculation(matriculation);
+    @GetMapping("/alter/{id}")
+    public ModelAndView alter(@PathVariable("id") Integer id) {
+        ModelAndView mv = new ModelAndView("alter");
+
+        SenderData senderData = repository.getOne(id);
         mv.addObject("senderData", senderData);
         return mv;
+    }
+
+    @PutMapping("/alter")
+    public ModelAndView AlterCustomer(SenderData senderData) {
+        ModelAndView mv = new ModelAndView();
+        senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        repository.save(senderData);
+        mv.setViewName("redirect:/listes");
+        return mv;
+    }
+
+    @GetMapping("/update/{id}")
+    public ModelAndView filtre(@PathVariable("id") Integer id) {
+        ModelAndView mv = new ModelAndView("filtre");
+        SenderData senderData = repository.getOne(id);
+        mv.addObject("senderData", senderData);
+        return mv;
+    }
+
+    @GetMapping("/elimiar/{id}")
+    public String deletar(@PathVariable("id") Integer id) {
+         repository.deleteById(id);
+         return "redirect:/listes";
     }
 }

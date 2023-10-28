@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>liste des clientes</title>
     <link rel="shortcut icon" href="img/logo.jpg">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/materialize.min.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -30,6 +31,9 @@
         <th>R_AMOUNT</th>
         <th>DATE</th>
         <th>PIN</th>
+        <th>STATUS</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
     </tr>
     </thead>
     <tbody th:each="senderData : ${senderData}">
@@ -42,6 +46,9 @@
     <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span>FCFA</td>
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize">PSRM-<span th:text="${senderData.matriculation}"></span></td>
+    <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
+    <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
+    <td class=""><a class=" btn btn-dark" th:href="@{update/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
     </tbody>
 </table>
 
@@ -50,7 +57,7 @@
 </div>
 
 <div class="text-center">
-    <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/index" style="color:white">GO BACK</a></button>
+    <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/prestige-principal" style="color:white">GO BACK</a></button>
 </div>
 <!--<a href="/index" class="waves-effect waves-light btn-small btn-info"><i class="material-icons left">cloud</i>Retour au page principal</a>-->
 
