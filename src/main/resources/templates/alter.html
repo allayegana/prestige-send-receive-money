@@ -72,6 +72,18 @@
                            th:field="*{recevoir}"/>
                 </div>
                 <div style="padding:6px">
+                    <label class="fst-italic" style="color:orange"><b>PAYOUT TYPE</b></label>
+                    <select class="form-select form-select-sm mb-3 text-uppercase fst-italic rounded-pill" required th:errorclass="is-invalid"
+                            aria-label=".form-select-sm example value=" type="text" name="receiveTp" th:fieled="*{receiveTp}">
+                        <option  selected disabled value="" style="color:orange">SELECT-PAYOUT-TYPE</option>
+                        <option>WAVE</option>
+                        <option >ORANGE</option>
+                        <option >TIGO</option>
+                        <option >EXPRESSO</option>
+                        <option >CASH</option>
+                    </select>
+                </div>
+                <div style="padding:6px">
                     <label class="fst-italic" style="color:orange"><b>Receive Phone</b></label>
                     <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="number" value=""
                            required
@@ -87,7 +99,7 @@
                         <option style="color:orange">PENDING</option>
                         <option style="color:red">CANCEL</option>
                     </select>
-
+                </div>
                 <div class="text-center">
                     <button class="btn center" style="margin:30px;background-color:green;color:white" type="submit">SEND</button>
                     <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/prestige-principal" style="color:white">GO BACK</a></button>

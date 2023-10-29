@@ -43,7 +43,8 @@ public class SenderData implements Serializable {
 
     @NotNull
     private String recevoir;
-
+    @NotNull
+    private String receiveTp;
     @NotNull
     private String status;
     @NotNull

@@ -53,6 +53,18 @@
                            name="nome" required
                            th:fieled="*{nome}"/>
                 </div>
+                <div style="padding:6px">
+                    <label class="fst-italic" style="color:orange"><b>PAYOUT TYPE</b></label>
+                    <select class="form-select form-select-sm mb-3 text-uppercase fst-italic rounded-pill" required th:errorclass="is-invalid"
+                            aria-label=".form-select-sm example value=" type="text" name="receiveTp" th:fieled="*{receiveTp}">
+                        <option  selected disabled value="" style="color:orange">SELECT-PAYOUT-TYPE</option>
+                        <option>WAVE</option>
+                        <option >ORANGE</option>
+                        <option >TIGO</option>
+                        <option >EXPRESSO</option>
+                        <option >CASH</option>
+                    </select>
+                </div>
 
                 <div style="padding:6px">
                     <label class="fst-italic" style="color:orange"><b>ReceiveAmt</b></label>

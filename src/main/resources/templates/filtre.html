@@ -25,6 +25,7 @@
         <th>R_NAME</th>
         <th>R_PHONE</th>
         <th>R_AMOUNT</th>
+        <th>PAY-TYPE</th>
         <th>DATE</th>
         <th>MTR</th>
         <th>STATUS</th>
@@ -35,11 +36,12 @@
     <tbody th:each="senderData : ${senderData}">
     <td class="text-capitalize" ><span th:text="${senderData.prenom}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.telephone}"></span></td>
-    <td class="text-capitalize" ><span th:text="${senderData.montant}"></span></td>
+    <td class="text-capitalize" >$<span th:text="${senderData.montant}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.pays}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.nome}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.phone}"></span></td>
-    <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span></td>
+    <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span>F</td>
+    <td class="text-capitalize" ><span th:text="${senderData.receiveTp}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>

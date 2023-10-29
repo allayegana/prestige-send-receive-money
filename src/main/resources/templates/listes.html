@@ -27,6 +27,7 @@
         <th>R_NAME</th>
         <th>R_PHONE</th>
         <th>R_AMOUNT</th>
+        <th>PAY-TYPE</th>
         <th>DATE</th>
         <th>PIN</th>
         <th>STATUS</th>
@@ -41,9 +42,10 @@
     <td class="text-capitalize"><span th:text="${senderData.pays}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.nome}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.phone}"></span></td>
-    <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span>FCFA</td>
+    <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span>F</td>
+    <td class="text-capitalize" ><span th:text="${senderData.receiveTp}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
-    <td class="text-capitalize">PSRM-<span th:text="${senderData.matriculation}"></span></td>
+    <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
     <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
     <td class=""><a class=" btn btn-dark" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
