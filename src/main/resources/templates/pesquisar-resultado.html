@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>liste des membres</title>
+    <title>liste des clientes</title>
     <link rel="shortcut icon" href="img/logo.jpg">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/materialize.min.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,19 +15,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="container">
-<header class=" card-body d-flex justify-content-center" style="background-color:red;color:white"><b>You wanna delete this customer? are you sur ?</b></header>
+<header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>THIS CUSTOMER </b></header>
+
 <table class="table">
     <thead class="">
     <tr class="">
         <th>S_NAME</th>
         <th>PHONE</th>
         <th>S_AMOUNT</th>
-        <th>COUNTRY</th>
+        <th>R_COUNTRY</th>
         <th>R_NAME</th>
         <th>R_PHONE</th>
         <th>R_AMOUNT</th>
         <th>DATE</th>
-        <th>MTR</th>
+        <th>PIN</th>
         <th>STATUS</th>
         <th>EDIT</th>
         <th>DELETE</th>
@@ -35,22 +37,25 @@
     <tbody th:each="senderData : ${senderData}">
     <td class="text-capitalize" ><span th:text="${senderData.prenom}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.telephone}"></span></td>
-    <td class="text-capitalize" ><span th:text="${senderData.montant}"></span></td>
+    <td class="text-capitalize" >$<span th:text="${senderData.montant}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.pays}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.nome}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.phone}"></span></td>
-    <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span></td>
+    <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span>FCFA</td>
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
-    <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
+    <td class="text-capitalize">PSRM-<span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
     <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
-    <td class=""><a class=" btn btn-danger" th:href="@{elimiar/{id}(id=${senderData.id})}" ><i class="large material-icons ">delete</i></a></td>
+    <td class=""><a class=" btn btn-dark" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
     </tbody>
-
 </table>
 
+<div class="container" th:each="reg : ${registros}" style="color: orange"><p class="">CUSTOMER TOTAL : <span
+        th:text="${registros}"></span></p>
+</div>
+
 <div class="text-center">
-    <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/listes" style="color:white">GO BACK</a></button>
+    <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/prestige-principal" style="color:white">GO BACK</a></button>
 </div>
 <!--<a href="/index" class="waves-effect waves-light btn-small btn-info"><i class="material-icons left">cloud</i>Retour au page principal</a>-->
 
@@ -66,5 +71,29 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="js/bootstrap.js"></script>
+<script>
+     $(function(){
+          $("#filtro").keyup(function(){
+            var texto = $(this).val();
+            $(".bloco").each(function(){
+              var resultado = $(this).text().toUpperCase().indexOf(' '+texto.toUpperCase());
+              if(resultado < 0) {
+                $(this).fadeOut();
+              }else {
+                $(this).fadeIn();
+              }
+            });
+
+           });
+
+          });
+
+
+           var btnLimpar = document.getElementById("limpar");
+            btnLimpar.addEventListener("click", function(event){
+
+               var inputCliente = document.getElementById("vazias").value = "";
+            });
+</script>
 </body>
 </html>

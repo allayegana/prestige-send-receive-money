@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -30,6 +31,7 @@ public class SenderControllers {
     @GetMapping("/prestige-principal")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("prestige-principal");
+        mv.addObject("senderData",new SenderData());
         return mv;
     }
 
@@ -82,7 +84,7 @@ public class SenderControllers {
         return mv;
     }
 
-    @PutMapping("/alter")
+    @PostMapping("/alter")
     public ModelAndView AlterCustomer(SenderData senderData) {
         ModelAndView mv = new ModelAndView();
         senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -91,16 +93,30 @@ public class SenderControllers {
         return mv;
     }
 
-    @GetMapping("/update/{id}")
-    public ModelAndView filtre(@PathVariable("id") Integer id) {
+    @GetMapping("/atualizar/{id}")
+    public ModelAndView atualizar(@PathVariable("id") Integer id) {
         ModelAndView mv = new ModelAndView("filtre");
         SenderData senderData = repository.getOne(id);
         mv.addObject("senderData", senderData);
         return mv;
     }
 
-    @GetMapping("/elimiar/{id}")
-    public String deletar(@PathVariable("id") Integer id) {
+    @PostMapping("/pesquisar-resultado")
+    public ModelAndView pesquisarResultado(@RequestParam(required = false) String telephone) {
+        ModelAndView mv = new ModelAndView();
+        List<SenderData> senderDataList;
+        if (telephone == null || telephone.trim().isEmpty()){
+              senderDataList = repository.findAll();
+        }else {
+            senderDataList = repository.findByTelephoneContainingIgnoreCase(telephone);
+        }
+        mv.addObject("senderData", senderDataList);
+        mv.setViewName("pesquisar-resultado");
+        return mv;
+    }
+
+    @GetMapping("atualizar/elimiar/{id}")
+    public String eliminar(@PathVariable("id") Integer id) {
          repository.deleteById(id);
          return "redirect:/listes";
     }

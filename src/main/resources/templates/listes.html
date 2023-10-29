@@ -16,9 +16,7 @@
 </head>
 <body class="container">
 <header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>LIST FOR CUSTOMERS </b></header>
-<div>
-    <input class="form-control" id="filtro" placeholder="search" />
-</div>
+
 <table class="table">
     <thead class="">
     <tr class="">
@@ -48,7 +46,7 @@
     <td class="text-capitalize">PSRM-<span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
     <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
-    <td class=""><a class=" btn btn-dark" th:href="@{update/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
+    <td class=""><a class=" btn btn-dark" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
     </tbody>
 </table>
 

@@ -2,12 +2,10 @@ package us.com.prestigemoney.sendreceive.model;
 
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 
@@ -17,6 +15,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "CUSTOMER")
+@Getter
+@Setter
 public class SenderData implements Serializable {
 
     @Id
@@ -26,6 +26,8 @@ public class SenderData implements Serializable {
     @NotNull
     private String prenom;
     @NotNull
+    @Column()
+    @Size(max = 14, message = "check the phone number")
     private String telephone;
 
     @NotNull
@@ -36,6 +38,7 @@ public class SenderData implements Serializable {
     @Column(name = "nome")
     private String nome;
     @NotNull
+    @Size(max = 14, message = "check the phone number")
     private String phone;
 
     @NotNull

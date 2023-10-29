@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:margin="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:margin="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <html lang="pt-br" xml="http://thymeleaf.org"
       xml:layout="http://www.ultraq.net.nz/thymeleaf/layout">
@@ -21,6 +22,12 @@
             <br>
             <p class=" text-center fst-italic" style="color:orange;"><b><strong >Prestige send and receive money</strong></b></p>
         </div>
+    <div class="justify-content-center">
+        <form method="post" action="pesquisar-resultado" th:object="${senderData}" class="text-center">
+            <input class="form-control text-center" style="width: 80%;" id="filtro"  type="text" name="phone" th:field="*{telephone}" placeholder="search" />
+            <button class="btn btn-dark " type="submit">seach</button>
+        </form>
+    </div>
 
 </h2>
 <main>
