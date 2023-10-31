@@ -48,7 +48,7 @@ public class SenderControllers {
         if (result.hasErrors()) {
             return getSenderData(senderData);
         } else {
-            ModelAndView mv = new ModelAndView("redirect:/listes");
+            ModelAndView mv = new ModelAndView("redirect:/listes-unpaid");
             senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             Random gerador = new Random();
             for (int i = 1; i < 20; i++) {
@@ -63,12 +63,24 @@ public class SenderControllers {
     }
 
 
-    @RequestMapping("/listes")
+    @RequestMapping("/listes-unpaid")
     public ModelAndView customer() {
-        ModelAndView mv = new ModelAndView("listes");
+        ModelAndView mv = new ModelAndView("listes-unpaid");
+        List<SenderData> senderData = repository.findByStatus();
+
+        mv.addObject("senderData", senderData);
+        long registros = repository.count();
+        mv.addObject("registros", registros);
+        return mv;
+    }
+
+    @RequestMapping("/invoices-all")
+    public ModelAndView invoices() {
+        ModelAndView mv = new ModelAndView("invoices-all");
         Sort sort = Sort.by("id").ascending();
         Pageable page = PageRequest.of(0, 100, sort);
         Page<SenderData> senderData = repository.findAll(page);
+
         mv.addObject("senderData", senderData);
         long registros = repository.count();
         mv.addObject("registros", registros);
@@ -89,7 +101,7 @@ public class SenderControllers {
         ModelAndView mv = new ModelAndView();
         senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         repository.save(senderData);
-        mv.setViewName("redirect:/listes");
+        mv.setViewName("redirect:/listes-unpaid");
         return mv;
     }
 
@@ -117,7 +129,9 @@ public class SenderControllers {
 
     @GetMapping("atualizar/elimiar/{id}")
     public String eliminar(@PathVariable("id") Integer id) {
-         repository.deleteById(id);
-         return "redirect:/listes";
+        SenderData sendData =  repository.getReferenceById(id);
+        sendData.setStatus("PAID");
+        repository.save(sendData);
+         return "redirect:/listes-unpaid";
     }
 }
