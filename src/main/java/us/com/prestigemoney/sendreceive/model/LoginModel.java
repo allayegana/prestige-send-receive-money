@@ -7,25 +7,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Builder
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "LOGIN")
+@Table(name = "USUARIO")
 public class LoginModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
-
     @NotNull
+    @Size(min = 5,max = 30)
     private String usuario;
     @NotNull
+    @Size(min = 5,max = 30)
     private String motpass;
-    private String agence;
+    @Email
+    @NotNull
+    private String email;
 
 };
 

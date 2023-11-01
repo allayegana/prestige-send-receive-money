@@ -18,9 +18,9 @@
     max-width: 20%;
     height:40%">
 <header><p class="card-body d-flex justify-content-center" style="color:blue"><b>SIGN UP</b></p></header>
-<div>
-<form class="container" method="POST" th:object="${loginModel}">
-    <th:block th:include="messageValidation"></th:block>
+<div class="text-center align-items:center" style="background-color:#ffe6e6; border-radius:7px; border:7px; border-color:orange">
+<form class="container" method="POST" th:object="${loginModel}" action="saveUsuarios">
+
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
                 <label class="fst-italic" style="color:orange"><b>User Name</b></label>
@@ -37,13 +37,11 @@
             </div>
 
             <div style="padding:6px">
-            <label class="fst-italic" style="color:orange"><b>AGENCE</b></label>
-            <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
+            <label class="fst-italic" style="color:orange"><b>Email</b></label>
+            <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="email" value=""
                    required
-                   name="agence" th:fieled="*{agence}"/>
+                   name="email" th:fieled="*{email}"/>
             </div>
-
-
                 <div class="text-center">
                     <button class="btn center" style="margin:30px;background-color:green;color:white" type="submit">sign</button>
                 </div>
