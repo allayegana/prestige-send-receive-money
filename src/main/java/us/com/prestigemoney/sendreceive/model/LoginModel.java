@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
+
 @Builder
 @Entity
 @Data
@@ -23,11 +24,11 @@ public class LoginModel {
     @Column(name = "ID")
     private Integer id;
     @NotNull
-    @Size(min = 5,max = 30)
-    private String usuario;
+    @Size(min = 5,max = 30 , message = "check your min = 5 max =30")
+    private String user;
     @NotNull
-    @Size(min = 5,max = 30)
-    private String motpass;
+    @Size(min = 5 ,max = 25, message = "{long.value}")
+    private String senha;
     @Email
     @NotNull
     private String email;

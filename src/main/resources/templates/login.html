@@ -18,20 +18,23 @@
     max-width: 20%;
     height:20%">
 <header><p class="card-body d-flex justify-content-center" style="color:blue"><b>LOGIN</b></p></header>
+
 <div class="text-center align-items:center" style="background-color:#ccffcc; border-radius:7px; border:7px; border-color:orange">
-<form class="container" method="POST">
+<form class="container" method="POST" action="login" th:object="${loginModel}">
+    <div class="alert alert-danger" role="alert" th:if="${msg}">
+        <strong th:text="${msg}"></strong>
+    </div>
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
-                <label class="fst-italic" style="color:orange"><b>your email</b></label>
-                <input class="form-control rounded-pill" placeholder="" type="email" value=""
-                       name=""  required
-                       />
+                <label class="fst-italic" style="color:orange"><b>USER NAME</b></label>
+                <input class="form-control rounded-pill" placeholder="" type="text" value=""
+                       name="user" th:field="*{user}"  required />
             </div>
 
             <div style="padding:6px">
                 <label class="fst-italic" style="color:orange"><b>PASSWORD</b></label>
-                <input class="form-control rounded-pill" placeholder=""  type="password" value=""
-                       name="" required
+                <input class="form-control rounded-pill" placeholder=""  type="password" value="" th:field="*{senha}"
+                       name="senha" required
                        />
             </div>
             <p class=" text-center font-italic" style="color:white"><b>you no have user?<a href="/login-up">click here</a></b></p>

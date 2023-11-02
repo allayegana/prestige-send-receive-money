@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="container">
-<header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>LIST FOR CUSTOMERS </b></header>
+<header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>ALL INVOICE CUSTOMER </b></header>
 
 <table class="table">
     <thead class="">
@@ -54,6 +54,14 @@
 
 <div class="container" th:each="reg : ${registros}" style="color: orange"><p class="">CUSTOMER TOTAL : <span
         th:text="${registros}"></span></p>
+</div>
+
+<div class="container" th:each="reg : ${registro}" style="color: green"><p class="">CUSTOMER TOTAL PAID IN : <span
+        th:text="${registro}"></span> FCFA</p>
+</div>
+
+<div class="container" th:each="reg : ${registre}" style="color: Blue"><p class="">CUSTOMER TOTAL PAID IN : <span
+        th:text="${registre}"></span> $</p>
 </div>
 
 <div class="text-center">

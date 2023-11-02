@@ -4,5 +4,5 @@ public class ErroCrytografia extends Exception {
     public ErroCrytografia(String s) {
         super(s);
     }
-    private   static final long SerialVersionUID = 1L;
+    private   static final long serialVersionUID = 1L;
 }

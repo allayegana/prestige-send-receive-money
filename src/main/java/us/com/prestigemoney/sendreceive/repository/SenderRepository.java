@@ -15,5 +15,13 @@ public interface SenderRepository extends JpaRepository<SenderData,Integer> {
 
     @Query(value = "SELECT * FROM CUSTOMER  WHERE status ='unpaid'", nativeQuery = true)
     List<SenderData> findByStatus();
- //  List<> findByStatusStartWith(String status);
+
+    @Query(value = "SELECT COUNT(status) FROM CUSTOMER  WHERE status ='unpaid'", nativeQuery = true)
+    Long findByStatusUnpaid();
+
+    @Query(value = "SELECT sum(recevoir) FROM CUSTOMER  WHERE status ='paid'", nativeQuery = true)
+    Integer findByRecevoir();
+
+    @Query(value = "SELECT sum(montant) FROM CUSTOMER  WHERE status ='paid'", nativeQuery = true)
+    Integer findByMontant();
 }

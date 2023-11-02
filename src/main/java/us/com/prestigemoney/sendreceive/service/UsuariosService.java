@@ -3,9 +3,8 @@ package us.com.prestigemoney.sendreceive.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import us.com.prestigemoney.sendreceive.Utils.Ultil;
 import us.com.prestigemoney.sendreceive.exception.EmailExistesException;
-import us.com.prestigemoney.sendreceive.exception.ErroCrytografia;
+import us.com.prestigemoney.sendreceive.exception.UserServicoException;
 import us.com.prestigemoney.sendreceive.model.LoginModel;
 import us.com.prestigemoney.sendreceive.repository.LoginRepository;
 
@@ -19,16 +18,23 @@ public class UsuariosService {
 
         try {
             if (repository.findByEmail(loginModel.getEmail()) != null){
-                throw new EmailExistesException("this email is exist : " + loginModel.getEmail());
+                throw new EmailExistesException("this email is have account put your email : " + loginModel.getEmail());
             }
 
-            loginModel.setMotpass(Ultil.MD5(loginModel.getMotpass()));
+        //    loginModel.setSenha(Ultil.md5(loginModel.getSenha()));
 
         }catch (Exception e){
-             throw new ErroCrytografia(" error de ruptographia de mot de passe " + e.getMessage());
+             throw new Exception(e);
         }
 
         repository.save(loginModel);
+    }
+
+    public LoginModel UserLogin(String user , String senha) throws UserServicoException {
+
+        LoginModel lg = repository.findByUserAndSenha(user,senha);
+
+        return lg;
     }
 
 

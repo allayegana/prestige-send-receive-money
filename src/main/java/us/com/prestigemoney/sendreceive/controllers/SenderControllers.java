@@ -28,12 +28,12 @@ public class SenderControllers {
     @Autowired
     private SenderRepository repository;
 
-    @GetMapping("/prestige-principal")
-    public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("prestige-principal");
-        mv.addObject("senderData",new SenderData());
-        return mv;
-    }
+//    @GetMapping("/prestige-principal")
+//    public ModelAndView index() {
+//        ModelAndView mv = new ModelAndView("prestige-principal");
+//        mv.addObject("senderData",new SenderData());
+//        return mv;
+//    }
 
 
     @GetMapping("form")
@@ -69,7 +69,7 @@ public class SenderControllers {
         List<SenderData> senderData = repository.findByStatus();
 
         mv.addObject("senderData", senderData);
-        long registros = repository.count();
+        long registros = repository.findByStatusUnpaid();
         mv.addObject("registros", registros);
         return mv;
     }
@@ -84,6 +84,12 @@ public class SenderControllers {
         mv.addObject("senderData", senderData);
         long registros = repository.count();
         mv.addObject("registros", registros);
+
+        int registro = repository.findByRecevoir().intValue();
+        mv.addObject("registro", registro);
+
+        int registre = repository.findByMontant().intValue();
+        mv.addObject("registre", registre);
         return mv;
     }
 
