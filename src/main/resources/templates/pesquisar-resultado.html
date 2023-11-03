@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>liste des clientes</title>
-    <link rel="shortcut icon" href="img/logo.jpg">
+    <link rel="shortcut icon" href="img/do.jpg">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/materialize.min.css}"/>
@@ -57,7 +57,7 @@
 </div>
 
 <div class="text-center">
-    <button  class="btn center" style="margin:30px;background-color:orange" ><a href="/prestige-principal" style="color:white">GO BACK</a></button>
+    <button  class="btn center" style="margin:30px;background-color:orange;text-decoration:none" ><a href="/prestige-principal" style="color:white">GO BACK</a></button>
 </div>
 <!--<a href="/index" class="waves-effect waves-light btn-small btn-info"><i class="material-icons left">cloud</i>Retour au page principal</a>-->
 
@@ -73,29 +73,5 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="js/bootstrap.js"></script>
-<script>
-     $(function(){
-          $("#filtro").keyup(function(){
-            var texto = $(this).val();
-            $(".bloco").each(function(){
-              var resultado = $(this).text().toUpperCase().indexOf(' '+texto.toUpperCase());
-              if(resultado < 0) {
-                $(this).fadeOut();
-              }else {
-                $(this).fadeIn();
-              }
-            });
-
-           });
-
-          });
-
-
-           var btnLimpar = document.getElementById("limpar");
-            btnLimpar.addEventListener("click", function(event){
-
-               var inputCliente = document.getElementById("vazias").value = "";
-            });
-</script>
 </body>
 </html>

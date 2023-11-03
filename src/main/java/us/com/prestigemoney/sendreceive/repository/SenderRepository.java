@@ -24,4 +24,6 @@ public interface SenderRepository extends JpaRepository<SenderData,Integer> {
 
     @Query(value = "SELECT sum(montant) FROM CUSTOMER  WHERE status ='paid'", nativeQuery = true)
     Integer findByMontant();
+
+
 }

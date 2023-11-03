@@ -74,7 +74,7 @@ public class SenderControllers {
         return mv;
     }
 
-    @RequestMapping("/invoices-all")
+    @GetMapping("/invoices-all")
     public ModelAndView invoices() {
         ModelAndView mv = new ModelAndView("invoices-all");
         Sort sort = Sort.by("id").ascending();
@@ -85,10 +85,10 @@ public class SenderControllers {
         long registros = repository.count();
         mv.addObject("registros", registros);
 
-        int registro = repository.findByRecevoir().intValue();
+        int registro = repository.findByRecevoir();
         mv.addObject("registro", registro);
 
-        int registre = repository.findByMontant().intValue();
+        int registre = repository.findByMontant();
         mv.addObject("registre", registre);
         return mv;
     }
@@ -123,9 +123,9 @@ public class SenderControllers {
     public ModelAndView pesquisarResultado(@RequestParam(required = false) String telephone) {
         ModelAndView mv = new ModelAndView();
         List<SenderData> senderDataList;
-        if (telephone == null || telephone.trim().isEmpty()){
-              senderDataList = repository.findAll();
-        }else {
+        if (telephone == null || telephone.trim().isEmpty()) {
+            senderDataList = repository.findAll();
+        } else {
             senderDataList = repository.findByTelephoneContainingIgnoreCase(telephone);
         }
         mv.addObject("senderData", senderDataList);
@@ -135,9 +135,15 @@ public class SenderControllers {
 
     @GetMapping("atualizar/elimiar/{id}")
     public String eliminar(@PathVariable("id") Integer id) {
-        SenderData sendData =  repository.getReferenceById(id);
+        SenderData sendData = repository.getReferenceById(id);
         sendData.setStatus("PAID");
         repository.save(sendData);
-         return "redirect:/listes-unpaid";
+        return "redirect:/listes-unpaid";
     }
+
+
+    public Long soma() {
+        return (long) soma().intValue();
+    }
+
 }

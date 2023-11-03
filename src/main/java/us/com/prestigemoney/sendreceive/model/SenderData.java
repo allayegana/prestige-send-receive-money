@@ -15,8 +15,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "CUSTOMER")
-@Getter
-@Setter
 public class SenderData implements Serializable {
 
     @Id
@@ -31,7 +29,7 @@ public class SenderData implements Serializable {
     private String telephone;
 
     @NotNull
-    private String montant;
+    private Integer montant;
     @NotNull
     private String pays;
     @NotNull
@@ -42,7 +40,7 @@ public class SenderData implements Serializable {
     private String phone;
 
     @NotNull
-    private String recevoir;
+    private Integer recevoir;
     @NotNull
     private String receiveTp;
     @NotNull

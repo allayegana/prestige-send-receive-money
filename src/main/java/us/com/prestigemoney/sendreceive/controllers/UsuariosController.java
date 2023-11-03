@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,7 @@ import us.com.prestigemoney.sendreceive.repository.LoginRepository;
 import us.com.prestigemoney.sendreceive.service.UsuariosService;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.text.ParseException;
 
 @Controller
@@ -47,29 +49,39 @@ public class UsuariosController {
     }
 
     @RequestMapping(value = "/saveUsuarios",method = RequestMethod.POST)
-    public ModelAndView getLoginUpModel(LoginModel loginModel) throws Exception {
+    public ModelAndView getLoginUpModel(@Valid LoginModel loginModel) throws Exception {
         ModelAndView mv = new ModelAndView();
-        usuariosService.saveUsuarios(loginModel);
-        mv.setViewName("redirect:/");
+        if (repository.findByEmail(loginModel.getEmail()) != null){
+            mv.setViewName("redirect:/login-up");
+        }else {
+            repository.save(loginModel);
+            mv.setViewName("redirect:/");
+        }
         return mv;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(LoginModel loginModel, BindingResult br, HttpSession session) throws ParseException, UserServicoException {
+    public ModelAndView login(@Valid LoginModel loginModel, BindingResult br, HttpSession session) throws ParseException, UserServicoException {
         ModelAndView mv = new ModelAndView("login");
         mv.addObject("loginModel", new LoginModel());
         if (br.hasErrors()) {
            return mv;
         }
         LoginModel userLogin = usuariosService.UserLogin(loginModel.getUser(), loginModel.getSenha());
-
         if (userLogin == null) {
-            mv.addObject("mgs", "this user is not match");
+            mv.addObject("msg", "this user is not match");
         } else {
             session.setAttribute("userLogin", userLogin);
             return index();
         }
         return mv;
+    }
+
+    @PostMapping("/logout")
+    public ModelAndView logout(HttpSession session) throws Exception {
+          session.invalidate();
+         session.setMaxInactiveInterval(30);
+        return getLogin();
     }
 
 }
