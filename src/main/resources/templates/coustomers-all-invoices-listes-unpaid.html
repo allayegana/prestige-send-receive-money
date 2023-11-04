@@ -10,13 +10,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/materialize.min.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"-->
-<!--          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="container">
-<header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>ALL INVOICE CUSTOMER </b></header>
+<header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>ALL UNPAID LIST </b></header>
 
 <table class="table">
     <thead class="">
@@ -33,7 +32,7 @@
         <th>PIN</th>
         <th>STATUS</th>
         <th>EDIT</th>
-        <th>DELETE</th>
+        <th>DONE</th>
     </tr>
     </thead>
     <tbody th:each="senderData : ${senderData}">
@@ -48,21 +47,13 @@
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
-    <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
-    <td class=""><a class=" btn btn-dark" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
+    <td class=""><a class="btn btn-primary " th:href="@{alter-registro-for-this-customer/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
+    <td class=""><a class=" btn" style="background-color:#009900" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons  " style="color:white">assignment_turned_in</i></a></td>
     </tbody>
 </table>
 
 <div class="container" th:each="reg : ${registros}" style="color: orange"><p class="">CUSTOMER TOTAL : <span
         th:text="${registros}"></span></p>
-</div>
-
-<div class="container" th:each="reg : ${registro}" style="color: green"><p class="">CUSTOMER TOTAL PAID IN : <span
-        th:text="${registro}"></span> FCFA</p>
-</div>
-
-<div class="container" th:each="reg : ${registre}" style="color: Blue"><p class="">CUSTOMER TOTAL PAID IN : <span
-        th:text="${registre}"></span> $</p>
 </div>
 
 <div class="text-center">

@@ -23,6 +23,7 @@
 
 <div class="text-center align-items:center" style="background-color:#ccffcc; border-radius:7px; border:7px; border-color:orange">
 <form class="container" method="POST" action="login" th:object="${loginModel}">
+    <th:block th:include="messageValidation"></th:block>
     <div class="alert alert-danger" role="alert" th:if="${msg}">
         <strong th:text="${msg}"></strong>
     </div>

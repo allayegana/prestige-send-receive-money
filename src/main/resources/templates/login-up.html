@@ -20,7 +20,7 @@
 <header><p class="card-body d-flex justify-content-center" style="color:blue"><b>SIGN UP</b></p></header>
 <div class="text-center align-items:center" style="background-color:#ffe6e6; border-radius:7px; border:7px; border-color:orange">
 <form class="container" method="POST" th:object="${loginModel}" action="saveUsuarios">
-
+    <th:block th:include="messageValidation"></th:block>
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
                 <label class="fst-italic" style="color:orange"><b>User Name</b></label>

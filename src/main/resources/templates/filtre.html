@@ -45,14 +45,14 @@
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
-    <td class=""><a class="btn btn-primary " th:href="@{alter/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
-    <td class=""><a class=" btn btn-Shadow " style="background-color:#66ff66" th:href="@{elimiar/{id}(id=${senderData.id})}" ><i class="large material-icons " style="color:white">done</i></a></td>
+    <td class=""><a class="btn btn-primary " th:href="@{/alter-customer-no-paid/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
+    <td class=""><a class=" btn btn-Shadow " style="background-color:#66ff66" th:href="@{/atualizar-e-paid-customer/{id}(id=${senderData.id})}" ><i class="large material-icons " style="color:white">done</i></a></td>
     </tbody>
 
 </table>
 
 <div class="text-center">
-    <button  class="btn center" style="margin:30px;background-color:#66ff66" ><a href="/listes-unpaid" style="color:white;text-decoration:none">GO BACK</a></button>
+    <button  class="btn center" style="margin:30px;background-color:#66ff66" ><a th:href="@{/coustomers-all-invoices-listes-unpaid}" style="color:white;text-decoration:none">GO BACK</a></button>
 </div>
 <!--<a href="/index" class="waves-effect waves-light btn-small btn-info"><i class="material-icons left">cloud</i>Retour au page principal</a>-->
 

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import us.com.prestigemoney.sendreceive.model.SenderData;
 import us.com.prestigemoney.sendreceive.repository.SenderRepository;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -36,19 +37,20 @@ public class SenderControllers {
 //    }
 
 
-    @GetMapping("form")
+    @GetMapping("customer-send-money-registre-form")
     public ModelAndView getSenderData(SenderData senderData) {
-        ModelAndView tv = new ModelAndView("form");
+        ModelAndView tv = new ModelAndView("customer-send-money-registre-form");
         return tv;
     }
 
 
-    @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public ModelAndView sauve(@Valid SenderData senderData, BindingResult result, RedirectAttributes attributes) throws ParseException {
+    @RequestMapping(value = "/customer-send-money-registre-form", method = RequestMethod.POST)
+    public ModelAndView sauve(@Valid SenderData senderData, BindingResult result, RedirectAttributes attributes, HttpSession session) throws ParseException {
         if (result.hasErrors()) {
+            session.setAttribute("senderData", senderData);
             return getSenderData(senderData);
         } else {
-            ModelAndView mv = new ModelAndView("redirect:/listes-unpaid");
+            ModelAndView mv = new ModelAndView("redirect:/coustomers-all-invoices-listes-unpaid");
             senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             Random gerador = new Random();
             for (int i = 1; i < 20; i++) {
@@ -63,9 +65,9 @@ public class SenderControllers {
     }
 
 
-    @RequestMapping("/listes-unpaid")
+    @RequestMapping("/coustomers-all-invoices-listes-unpaid")
     public ModelAndView customer() {
-        ModelAndView mv = new ModelAndView("listes-unpaid");
+        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-unpaid");
         List<SenderData> senderData = repository.findByStatus();
 
         mv.addObject("senderData", senderData);
@@ -74,9 +76,9 @@ public class SenderControllers {
         return mv;
     }
 
-    @GetMapping("/invoices-all")
+    @GetMapping("/invoice-prestige-total-invoices-all")
     public ModelAndView invoices() {
-        ModelAndView mv = new ModelAndView("invoices-all");
+        ModelAndView mv = new ModelAndView("invoice-prestige-total-invoices-all");
         Sort sort = Sort.by("id").ascending();
         Pageable page = PageRequest.of(0, 100, sort);
         Page<SenderData> senderData = repository.findAll(page);
@@ -93,27 +95,27 @@ public class SenderControllers {
         return mv;
     }
 
-    @GetMapping("/alter/{id}")
+    @GetMapping("/alter-registro-for-this-customer/{id}")
     public ModelAndView alter(@PathVariable("id") Integer id) {
-        ModelAndView mv = new ModelAndView("alter");
+        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-unpaid");
 
         SenderData senderData = repository.getOne(id);
         mv.addObject("senderData", senderData);
         return mv;
     }
 
-    @PostMapping("/alter")
+    @PostMapping("/alter-customer-no-paid")
     public ModelAndView AlterCustomer(SenderData senderData) {
         ModelAndView mv = new ModelAndView();
         senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         repository.save(senderData);
-        mv.setViewName("redirect:/listes-unpaid");
+        mv.setViewName("redirect:/coustomers-all-invoices-listes-unpaid");
         return mv;
     }
 
-    @GetMapping("/atualizar/{id}")
+    @GetMapping("/customer-unpaid-atualizar/{id}")
     public ModelAndView atualizar(@PathVariable("id") Integer id) {
-        ModelAndView mv = new ModelAndView("filtre");
+        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-unpaid");
         SenderData senderData = repository.getOne(id);
         mv.addObject("senderData", senderData);
         return mv;
@@ -133,7 +135,7 @@ public class SenderControllers {
         return mv;
     }
 
-    @GetMapping("atualizar/elimiar/{id}")
+    @GetMapping("atualizar-e-paid-customer/{id}")
     public String eliminar(@PathVariable("id") Integer id) {
         SenderData sendData = repository.getReferenceById(id);
         sendData.setStatus("PAID");
@@ -141,9 +143,5 @@ public class SenderControllers {
         return "redirect:/listes-unpaid";
     }
 
-
-    public Long soma() {
-        return (long) soma().intValue();
-    }
 
 }

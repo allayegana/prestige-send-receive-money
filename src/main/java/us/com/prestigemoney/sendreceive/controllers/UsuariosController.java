@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import us.com.prestigemoney.sendreceive.exception.UserServicoException;
 import us.com.prestigemoney.sendreceive.model.LoginModel;
 import us.com.prestigemoney.sendreceive.model.SenderData;
 import us.com.prestigemoney.sendreceive.repository.LoginRepository;
+import us.com.prestigemoney.sendreceive.repository.SenderRepository;
 import us.com.prestigemoney.sendreceive.service.UsuariosService;
 
 import javax.servlet.http.HttpSession;
@@ -27,19 +29,23 @@ public class UsuariosController {
     @Autowired
     private UsuariosService usuariosService;
 
+    @Autowired
+    private SenderRepository senderRepository;
+
     @GetMapping("/")
     public ModelAndView getLogin() {
         ModelAndView mv = new ModelAndView("login");
-       mv.addObject("loginModel", new LoginModel());
+        mv.addObject("loginModel", new LoginModel());
         return mv;
     }
 
     @GetMapping("/prestige-principal")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("prestige-principal");
-        mv.addObject("senderData",new SenderData());
+        mv.addObject("senderData", new SenderData());
         return mv;
     }
+
 
     @GetMapping("/login-up")
     public ModelAndView getLoginUp() {
@@ -48,12 +54,14 @@ public class UsuariosController {
         return mv;
     }
 
-    @RequestMapping(value = "/saveUsuarios",method = RequestMethod.POST)
-    public ModelAndView getLoginUpModel(@Valid LoginModel loginModel) throws Exception {
+
+    @RequestMapping(value = "/saveUsuarios", method = RequestMethod.POST)
+    public ModelAndView getLoginUpModel(@Valid LoginModel loginModel, RedirectAttributes attributes) throws Exception {
         ModelAndView mv = new ModelAndView();
-        if (repository.findByEmail(loginModel.getEmail()) != null){
+        if (repository.findByEmail(loginModel.getEmail()) != null) {
             mv.setViewName("redirect:/login-up");
-        }else {
+            attributes.addFlashAttribute("msg", "this: " + loginModel.getEmail() + " have account");
+        } else {
             repository.save(loginModel);
             mv.setViewName("redirect:/");
         }
@@ -65,11 +73,11 @@ public class UsuariosController {
         ModelAndView mv = new ModelAndView("login");
         mv.addObject("loginModel", new LoginModel());
         if (br.hasErrors()) {
-           return mv;
+            return mv;
         }
         LoginModel userLogin = usuariosService.UserLogin(loginModel.getUser(), loginModel.getSenha());
         if (userLogin == null) {
-            mv.addObject("msg", "this user is not match");
+            mv.addObject("msg", "this: " + loginModel.getUser() +" or " + loginModel.getSenha() + " is invalid");
         } else {
             session.setAttribute("userLogin", userLogin);
             return index();
@@ -79,8 +87,8 @@ public class UsuariosController {
 
     @PostMapping("/logout")
     public ModelAndView logout(HttpSession session) throws Exception {
-          session.invalidate();
-         session.setMaxInactiveInterval(30);
+        session.invalidate();
+        session.setMaxInactiveInterval(10*600);
         return getLogin();
     }
 

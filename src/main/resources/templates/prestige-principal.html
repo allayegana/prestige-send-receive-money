@@ -46,9 +46,9 @@
 <main>
     <div class="card-body">
         <div class="card-body text-center d-flex justify-content-center">
-            <a  type="button" href="/form" class="btn-sm btn  fst-italic btn-center" style="background-color:#708090;margin:5px text-decoration:none;color:white; margin:5px">send money</a>
-            <a  type="button" href="/invoices-all" class="btn-sm btn fst-italic btn-center" style="background-color:green;margin:5px text-decoration:none; color:white;  margin:5px">invoice all</a>
-            <a  type="button" href="/listes-unpaid" class="btn-sm btn fst-italic btn-center" style="background-color:red;margin:5px text-decoration:none;color:white;  margin:5px">UNPAID LIST</a>
+            <a  type="button" href="/customer-send-money-registre-form" class="btn-sm btn  fst-italic btn-center" style="background-color:#708090;margin:5px text-decoration:none;color:white; margin:5px">send money</a>
+            <a  type="button" th:href="@{/invoice-prestige-total-invoices-all}" class="btn-sm btn fst-italic btn-center" style="background-color:green;margin:5px text-decoration:none; color:white;  margin:5px">invoice all</a>
+            <a  type="button" th:href="@{/coustomers-all-invoices-listes-unpaid}" class="btn-sm btn fst-italic btn-center" style="background-color:red;margin:5px text-decoration:none;color:white;  margin:5px">UNPAID LIST</a>
         </div>
     </div>
 </main>
