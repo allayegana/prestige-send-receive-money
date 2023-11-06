@@ -16,13 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="container align-items:center text-center" style="background-image:url('img/sec.png');
-    min-height:10px;
-    max-width: 20%;
+    min-height:15px;
+    max-width: 40%;
     height:20%">
-<header><p class="card-body d-flex justify-content-center" style="color:blue"><b>LOGIN</b></p></header>
 
-<div class="text-center align-items:center" style="background-color:#ccffcc; border-radius:7px; border:7px; border-color:orange">
-<form class="container" method="POST" action="login" th:object="${loginModel}">
+<div class="text-center align-items:center" style="background-color:black; border-radius:10px; border:10px; border-color:orange;padding:12%">
+    <p class="card-body d-flex justify-content-center" style="color:white"><b>LOGIN</b></p></header>
+    <form class="container" method="POST" action="login" th:object="${loginModel}">
     <th:block th:include="messageValidation"></th:block>
     <div class="alert alert-danger" role="alert" th:if="${msg}">
         <strong th:text="${msg}"></strong>
@@ -30,23 +30,23 @@
     <div class="text-center">
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
-                <label class="fst-italic" style="color:orange"><b>USER NAME</b></label>
+                <label class="fst-italic" style="color:white"><b>USER NAME</b></label>
                 <input class="form-control rounded-pill" placeholder="" type="text" value=""
                        name="user" th:field="*{user}"   />
             </div>
 
             <div style="padding:6px">
-                <label class="fst-italic" style="color:orange"><b>PASSWORD</b></label>
+                <label class="fst-italic" style="color:white"><b>PASSWORD</b></label>
                 <input class="form-control rounded-pill" placeholder=""  type="password" value="" th:field="*{senha}"
                        name="senha"
                        />
             </div>
-            <p class=" text-center font-italic" style="color:orange"><b>you no have user?<a href="/login-up">click here</a></b></p>
+            <p class=" text-center font-italic" style="color:white"><b>you no have user?<a href="/login-up">click here</a></b></p>
 
             <div class="text-center">
                     <button class="btn center" style="margin:30px;background-color:orange;color:white" type="submit">Login</button>
                 </div>
-                <p class=" text-center font-italic" style="color:orange"><b>Be careful with your security key</b></p>
+                <p class=" text-center font-italic" style="color:white"><b>Be careful with your security key</b></p>
             </div>
 
 </form>

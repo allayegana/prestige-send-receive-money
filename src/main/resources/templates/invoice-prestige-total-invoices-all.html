@@ -14,13 +14,27 @@
 <!--          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <head>
+        ...
+        <script>
+        jQuery(function($){
+        $("h3.symple-toggle-trigger").click(function(){
+            $(this).toggleClass("active").next().slideToggle("fast");
+            return false;
+        });
+        });
+</script>
+    </head>
 </head>
 <body class="container">
-<header class=" card-body d-flex justify-content-center" style="background-color:orange;color:white"><b>ALL INVOICE CUSTOMER </b></header>
-
+<header class=" card-body d-flex justify-content-center" style="background-color:blue;color:white"><b>ALL INVOICE CUSTOMER </b></header>
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+</form>
 <table class="table">
     <thead class="">
-    <tr class="">
+    <tr class="" id="#">
         <th>S_NAME</th>
         <th>PHONE</th>
         <th>S_AMOUNT</th>
@@ -36,33 +50,35 @@
         <th>DELETE</th>
     </tr>
     </thead>
-    <tbody th:each="senderData : ${senderData}">
+    <tbody  th:each="senderData : ${senderData}" id="myTable">
     <td class="text-capitalize" ><span th:text="${senderData.prenom}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.telephone}"></span></td>
     <td class="text-capitalize" >$<span th:text="${senderData.montant}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.pays}"></span></td>
-    <td class="text-capitalize"><span th:text="${senderData.nome}"></span></td>
+    <td class="text-capitalize"><span th:text="${senderData.nome}"><i class="large material-icons">done</i></span></td>
     <td class="text-capitalize"><span th:text="${senderData.phone}"></span></td>
     <td class="text-capitalize" ><span th:text="${senderData.recevoir}"></span>F</td>
     <td class="text-capitalize" ><span th:text="${senderData.receiveTp}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
-    <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
-    <td class=""><a class="btn btn-primary " th:href="@{alter-registro-for-this-customer/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
-    <td class=""><a class=" btn btn-dark" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
+    <td class="text-capitalize"><span class="badge badge-success"
+                                      th:classappend="${#strings.toString(senderData.status) == 'PAID' ? 'btn btn-success' : 'btn btn-danger'}">
+</span></td>
+    <td class=""><a class="btn btn-primary " th:href="@{/alter-registro-for-this-customer/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
+    <td class=""><a class=" btn btn-dark" th:href="@{/customer-unpaid-atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons ">visibility</i></a></td>
     </tbody>
 </table>
 
-<div class="container" th:each="reg : ${registros}" style="color: orange"><p class="">CUSTOMER TOTAL : <span
-        th:text="${registros}"></span></p>
+<div class="container" th:each="reg : ${registros}" style="color: orange"><button class="btn-info"><p class="text-center"><b>CUSTOMER TOTAL : </b><span
+        th:text="${registros}"></span></p></button>
 </div>
 
-<div class="container" th:each="reg : ${registro}" style="color: green"><p class="">CUSTOMER TOTAL PAID IN : <span
-        th:text="${registro}"></span> FCFA</p>
+<div class="container" th:each="reg : ${registro}" style="color: green"><button class="btn-warning"><b><p style="color:white; align-text:center;">CUSTOMER TOTAL PAID IN : <span
+        th:text="${registro}"></span> FCFA</p></B></button>
 </div>
 
-<div class="container" th:each="reg : ${registre}" style="color: Blue"><p class="">CUSTOMER TOTAL PAID IN : <span
-        th:text="${registre}"></span> $</p>
+<div class="container " th:each="reg : ${registre}"><button class="btn-info text-center"><p class="text-center" style="color:green"><strong class="text-center">CUSTOMER TOTAL PAID IN :$ </strong><span
+        th:text="${registre}"></span></p></button>
 </div>
 
 <div class="text-center">
@@ -83,28 +99,24 @@
 <script src="js/jquery-3.2.1.js"></script>
 <script src="js/bootstrap.js"></script>
 <script>
-     $(function(){
-          $("#filtro").keyup(function(){
-            var texto = $(this).val();
-            $(".bloco").each(function(){
-              var resultado = $(this).text().toUpperCase().indexOf(' '+texto.toUpperCase());
-              if(resultado < 0) {
-                $(this).fadeOut();
-              }else {
-                $(this).fadeIn();
-              }
-            });
+ <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+</script>
 
-           });
-
-          });
-
-
-           var btnLimpar = document.getElementById("limpar");
-            btnLimpar.addEventListener("click", function(event){
-
-               var inputCliente = document.getElementById("vazias").value = "";
-            });
+...
+<script>
+$("h3.symple-toggle-trigger").click(function(){
+    $(this).toggleClass("active").next().slideToggle("fast");
+    return false;
+});
 </script>
 </body>
 </html>

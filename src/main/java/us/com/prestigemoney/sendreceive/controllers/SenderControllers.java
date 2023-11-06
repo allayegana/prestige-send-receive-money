@@ -97,14 +97,14 @@ public class SenderControllers {
 
     @GetMapping("/alter-registro-for-this-customer/{id}")
     public ModelAndView alter(@PathVariable("id") Integer id) {
-        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-unpaid");
+        ModelAndView mv = new ModelAndView("alter");
 
         SenderData senderData = repository.getOne(id);
         mv.addObject("senderData", senderData);
         return mv;
     }
 
-    @PostMapping("/alter-customer-no-paid")
+    @PostMapping("/alter")
     public ModelAndView AlterCustomer(SenderData senderData) {
         ModelAndView mv = new ModelAndView();
         senderData.setJour(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -115,7 +115,7 @@ public class SenderControllers {
 
     @GetMapping("/customer-unpaid-atualizar/{id}")
     public ModelAndView atualizar(@PathVariable("id") Integer id) {
-        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-unpaid");
+        ModelAndView mv = new ModelAndView("filtre");
         SenderData senderData = repository.getOne(id);
         mv.addObject("senderData", senderData);
         return mv;
@@ -135,12 +135,12 @@ public class SenderControllers {
         return mv;
     }
 
-    @GetMapping("atualizar-e-paid-customer/{id}")
+    @GetMapping("/atualizar-e-paid-customer/{id}")
     public String eliminar(@PathVariable("id") Integer id) {
         SenderData sendData = repository.getReferenceById(id);
         sendData.setStatus("PAID");
         repository.save(sendData);
-        return "redirect:/listes-unpaid";
+        return "redirect:/coustomers-all-invoices-listes-unpaid";
     }
 
 

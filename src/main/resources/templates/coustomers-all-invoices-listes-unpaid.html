@@ -47,8 +47,8 @@
     <td class="text-capitalize"><span th:text="${senderData.jour}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.matriculation}"></span></td>
     <td class="text-capitalize"><span th:text="${senderData.status}"></span></td>
-    <td class=""><a class="btn btn-primary " th:href="@{alter-registro-for-this-customer/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
-    <td class=""><a class=" btn" style="background-color:#009900" th:href="@{atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons  " style="color:white">assignment_turned_in</i></a></td>
+    <td class=""><a class="btn btn-primary " th:href="@{/alter-registro-for-this-customer/{id}(id=${senderData.id})}" ><i class="large material-icons ">edit</i></a></td>
+    <td class=""><a class=" btn" style="background-color:#009900" th:href="@{/customer-unpaid-atualizar/{id}(id=${senderData.id})}" ><i class="large material-icons  " style="color:white">assignment_turned_in</i></a></td>
     </tbody>
 </table>
 

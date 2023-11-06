@@ -15,11 +15,11 @@
 </head>
 <body class="container" style="background-image:url('img/sec.png');
     min-height:10px;
-    max-width: 20%;
+    max-width: 40%;
     height:40%">
-<header><p class="card-body d-flex justify-content-center" style="color:blue"><b>SIGN UP</b></p></header>
-<div class="text-center align-items:center" style="background-color:#ffe6e6; border-radius:7px; border:7px; border-color:orange">
-<form class="container" method="POST" th:object="${loginModel}" action="saveUsuarios">
+<div class="text-center align-items:center" style="background-color:black; border-radius:10px; border:10px; border-color:orange;padding:10%">
+    <p class="card-body d-flex justify-content-center" style="color:blue"><b>SIGN UP</b>
+    <form class="container" method="POST" th:object="${loginModel}" action="saveUsuarios">
     <th:block th:include="messageValidation"></th:block>
         <div class="row col 12 form-group border border-dark card-body">
             <div style="padding:6px">
@@ -44,6 +44,7 @@
             </div>
                 <div class="text-center">
                     <button class="btn center" style="margin:30px;background-color:orange;color:white" type="submit">sign</button>
+                    <p class=" text-center font-italic" style="color:orange"><b>if you have Account?<a href="/"> click here</a></b></p>
                 </div>
                 <p class=" text-center font-italic" style="color:orange"><b>Be careful with your security key</b></p>
             </div>
