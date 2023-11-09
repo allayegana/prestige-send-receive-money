@@ -42,6 +42,12 @@
                    required
                    name="email" th:fieled="*{email}"/>
             </div>
+            <div style="padding:6px">
+                <label class="fst-italic" style="color:orange"><b>AGENCE</b></label>
+                <input class="form-control rounded-pill" placeholder="" th:errorclass="is-invalid" type="text" value=""
+                       required
+                       name="agence" th:fieled="*{agence}"/>
+            </div>
                 <div class="text-center">
                     <button class="btn center" style="margin:30px;background-color:orange;color:white" type="submit">sign</button>
                     <p class=" text-center font-italic" style="color:orange"><b>if you have Account?<a href="/"> click here</a></b></p>

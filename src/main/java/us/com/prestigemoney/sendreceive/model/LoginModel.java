@@ -33,6 +33,11 @@ public class LoginModel {
     @NotNull
     private String email;
 
+   @NotNull
+    private String agence;
+    private Boolean ativo;
+
+
 };
 
 
