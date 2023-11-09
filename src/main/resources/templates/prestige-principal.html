@@ -29,11 +29,8 @@
     <button type="submit" class="btn-nav nav-item nav-link btn-danger" ><i class="fas fa-times" style="color:white">logout</i></button>
 </form>
 <h2 class="d-flex justify-content-center">
-    <br>
-        <div class="card-body -justify-content-center">
-            <br>
-            <p class=" text-center fst-italic" style="color:orange;"><b><strong class="text-center">Prestige send and receive money</strong></b></p>
-        </div>
+    <p class=" text-center fst-italic" style="color:orange;"><strong class="text-center">Prestige send and receive money</strong></p>
+</h2>
     <div class="justify-content-center">
         <form method="post" action="pesquisar-resultado" th:object="${senderData}" class="text-center">
             <input class="form-control text-center" style="width: 80%;" id="filtro"  type="text" name="phone" th:field="*{telephone}" placeholder="search" />
