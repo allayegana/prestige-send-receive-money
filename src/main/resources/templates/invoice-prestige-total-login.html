@@ -23,23 +23,15 @@
 <table class="table">
     <thead class="">
     <tr class="" id="#">
-        <th>id</th>
         <th>USER</th>
-        <th>PASSWORD</th>
-        <th>EMAIL</th>
-        <th>AGENCY</th>
         <th>STATUS</th>
         <th>SHOW</th>
-        <th>LOCK AND UNCLOK</th>
+        <th>ALTER</th>
         <th>DELETE</th>
     </tr>
     </thead>
     <tbody  th:each="LoginModel : ${LoginModel}" id="myTable">
-    <td class="text-capitalize" ><span th:text="${LoginModel.id}"></span></td>
     <td class="text-capitalize"><span th:text="${LoginModel.user}"></span></td>
-    <td class="text-capitalize" ><span th:text="${LoginModel.senha}"></span></td>
-    <td class="text-capitalize"><span th:text="${LoginModel.email}"></span></td>
-    <td class="text-capitalize"><span th:text="${LoginModel.agence}"></span></td>
     <td class="text-capitalize "><span th:text="${LoginModel.ativo}"></span></td>
     <td class="text-capitalize"><span class="badge badge-success"
                                       th:classappend="${#strings.toString(LoginModel.ativo) ==  'true' ? 'btn btn-success' : 'btn btn-danger'}">
