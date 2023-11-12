@@ -56,6 +56,20 @@ public class SenderControllers {
             for (int i = 1; i < 20; i++) {
                 gerador.nextInt();
             }
+            switch (senderData.getPays()) {
+                case "SENEGAL":
+                    senderData.setPhone("+221" + senderData.getPhone());
+                    break;
+                case "MALI":
+                    senderData.setPhone("+223" + senderData.getPhone());
+                    break;
+                case "COTE D'IVOIRE":
+                    senderData.setPhone("+225" + senderData.getPhone());
+                    break;
+                case "USA":
+                    senderData.setPhone("+1" + senderData.getPhone());
+                    break;
+            }
             senderData.setMatriculation(gerador.nextInt(30302022) + 1);
             senderData.setStatus("UNPAID");
             repository.save(senderData);
