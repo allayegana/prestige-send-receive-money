@@ -17,6 +17,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class=".bg-gradient-light" style="background-image:url('img/dolar.jpg')">
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <form style="padding:5px" action="/logout" method="post">
+            <button type="submit" class="btn-nav nav-item nav-link btn-danger" ><i class="fas fa-times" style="color:white">logout</i></button>
+        </form>
+        <a class="navbar-brand" style="color:green" href="/customer-send-money-registre-form">send money</a>
+        <button class="navbar-toggler" style="background-color:white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="large material-icons">dehaze</i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link active" style="color:blue" aria-current="page" th:href="@{/invoice-prestige-total-invoices-all}">All-Invoice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:red" th:href="@{/coustomers-all-invoices-listes-unpaid}">UNPAID</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >
+                        details des pays
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/senegal">senegal</a></li>
+                        <li><a class="dropdown-item" href="mali">Mali</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="abidjan">cote d'ivoire</a></li>
+                        <li><a class="dropdown-item" href="login">login</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ">Link</a>
+                </li>
+            </ul>
+            <form  method="post" action="pesquisar-resultado" th:object="${senderData}" class="d-flex" role="search">
+                <input class="form-control me-2" type="search"  name="phone" th:field="*{telephone}" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
 <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
 
@@ -24,32 +64,27 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     <span aria-hidden="true">&times;</span>
 </div>
-
-<form style="padding:5px" action="/logout" method="post">
-    <button type="submit" class="btn-nav nav-item nav-link btn-danger" ><i class="fas fa-times" style="color:white">logout</i></button>
-</form>
 <h2 class="d-flex justify-content-center">
     <p class=" text-center fst-italic" style="color:orange;"><strong class="text-center">Prestige send and receive money</strong></p>
 </h2>
-    <div class="text-center">
-        <form method="post" action="pesquisar-resultado" th:object="${senderData}" class="text-center">
-            <div class="d-flex justify-content-center">
-            <input class="form-control text-center" style="width:20%;padding:5px" id="filtro"  type="text" name="phone" th:field="*{telephone}" placeholder="search" />
-                <button class="btn btn-primary " type="submit" style="color:white">search</button>
-            </div>
-        </form>
-    </div>
+<!--    <div class="text-center">-->
+<!--        <form method="post" action="pesquisar-resultado" th:object="${senderData}" class="text-center">-->
+<!--            <div class="d-flex justify-content-center">-->
+<!--            <input class="form-control text-center" style="width:20%;padding:5px" id="filtro"  type="text" name="phone" th:field="*{telephone}" placeholder="search" />-->
+<!--                <button class="btn btn-primary " type="submit" style="color:white">search</button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
 
-</h2>
-<main>
-    <div class="card-body">
-        <div class="card-body text-center d-flex justify-content-center">
-            <a  type="button" href="/customer-send-money-registre-form" class="btn-sm btn  fst-italic btn-center" style="background-color:#708090;margin:5px text-decoration:none;color:white; margin:5px">send money</a>
-            <a  type="button" th:href="@{/invoice-prestige-total-invoices-all}" class="btn-sm btn fst-italic btn-center" style="background-color:green;margin:5px text-decoration:none; color:white;  margin:5px">invoice all</a>
-            <a  type="button" th:href="@{/coustomers-all-invoices-listes-unpaid}" class="btn-sm btn fst-italic btn-center" style="background-color:red;margin:5px text-decoration:none;color:white;  margin:5px">UNPAID LIST</a>
-        </div>
-    </div>
-</main>
+<!--<main>-->
+<!--    <div class="card-body">-->
+<!--        <div class="card-body text-center d-flex justify-content-center">-->
+<!--            <a  type="button" href="/customer-send-money-registre-form" class="btn-sm btn  fst-italic btn-center" style="background-color:#708090;margin:5px text-decoration:none;color:white; margin:5px">send money</a>-->
+<!--            <a  type="button" th:href="@{/invoice-prestige-total-invoices-all}" class="btn-sm btn fst-italic btn-center" style="background-color:green;margin:5px text-decoration:none; color:white;  margin:5px">invoice all</a>-->
+<!--            <a  type="button"  class="btn-sm btn fst-italic btn-center" style="background-color:red;margin:5px text-decoration:none;color:white;  margin:5px">UNPAID LIST</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
 <section class="d-flex justify-content-center">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="card-body" style="">
