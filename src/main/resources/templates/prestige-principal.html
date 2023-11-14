@@ -22,8 +22,8 @@
         <form style="padding:5px" action="/logout" method="post">
             <button type="submit" class="btn-nav nav-item nav-link btn-danger" ><i class="fas fa-times" style="color:white">logout</i></button>
         </form>
-        <a class="navbar-brand" style="color:green" href="/customer-send-money-registre-form">send money</a>
-        <button class="navbar-toggler" style="background-color:white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" style="color:green" href="/customer-send-money-registre-form">Send</a>
+        <button class="navbar-toggler" style="color:white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"><i class="large material-icons">dehaze</i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
@@ -34,20 +34,14 @@
                 <li class="nav-item">
                     <a class="nav-link" style="color:red" th:href="@{/coustomers-all-invoices-listes-unpaid}">UNPAID</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >
-                        details des pays
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/senegal">senegal</a></li>
-                        <li><a class="dropdown-item" href="mali">Mali</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="abidjan">cote d'ivoire</a></li>
-                        <li><a class="dropdown-item" href="login">login</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/coustomers-all-invoices-listes-mali}">ML</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" style="color:yellow" th:href="@{/coustomers-all-invoices-listes-senegal}">SNG</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ">Link</a>
+                    <a class="nav-link " style="color:white" th:href="@{/coustomers-all-invoices-listes-civ}">CIV</a>
                 </li>
             </ul>
             <form  method="post" action="pesquisar-resultado" th:object="${senderData}" class="d-flex" role="search">
@@ -64,9 +58,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     <span aria-hidden="true">&times;</span>
 </div>
-<h2 class="d-flex justify-content-center">
-    <p class=" text-center fst-italic" style="color:orange;"><strong class="text-center">Prestige send and receive money</strong></p>
-</h2>
+
 <!--    <div class="text-center">-->
 <!--        <form method="post" action="pesquisar-resultado" th:object="${senderData}" class="text-center">-->
 <!--            <div class="d-flex justify-content-center">-->
@@ -115,7 +107,7 @@
     </div>
 </div>
 <br><br>
-<footer class=" text-center fst-italic" style="color:white;"><b style="">envoyer et recevoir votre argent en toute securite</b></footer>
+<!--<footer class=" text-center fst-italic" style="color:white;"><b style="">envoyer et recevoir votre argent en toute securite</b></footer>-->
 
 <!--Import jQuery before materialize.js-->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"

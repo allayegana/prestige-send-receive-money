@@ -63,7 +63,7 @@ public class SenderControllers {
                 case "MALI":
                     senderData.setPhone("+223" + senderData.getPhone());
                     break;
-                case "COTE D'IVOIRE":
+                case "COTE DIVOIRE":
                     senderData.setPhone("+225" + senderData.getPhone());
                     break;
                 case "USA":
@@ -86,6 +86,39 @@ public class SenderControllers {
 
         mv.addObject("senderData", senderData);
         long registros = repository.findByStatusUnpaid();
+        mv.addObject("registros", registros);
+        return mv;
+    }
+
+    @RequestMapping("/coustomers-all-invoices-listes-senegal")
+    public ModelAndView senegal() {
+        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-senegal");
+        List<SenderData> senderData = repository.findByPays();
+
+        mv.addObject("senderData", senderData);
+        long registros = repository.findByPaysSenegal();
+        mv.addObject("registros", registros);
+        return mv;
+    }
+
+    @RequestMapping("/coustomers-all-invoices-listes-mali")
+    public ModelAndView mali() {
+        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-mali");
+        List<SenderData> senderData = repository.findByPaysMl();
+
+        mv.addObject("senderData", senderData);
+        long registros = repository.findByPaysMALI();
+        mv.addObject("registros", registros);
+        return mv;
+    }
+
+    @RequestMapping("/coustomers-all-invoices-listes-civ")
+    public ModelAndView civ() {
+        ModelAndView mv = new ModelAndView("coustomers-all-invoices-listes-civ");
+        List<SenderData> senderData = repository.findByPaysCiv();
+
+        mv.addObject("senderData", senderData);
+        long registros = repository.findByPaysCotedivoire();
         mv.addObject("registros", registros);
         return mv;
     }
